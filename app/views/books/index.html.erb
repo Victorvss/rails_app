@@ -8,6 +8,7 @@
       <th>Tittle</th>
       <th>Author</th>
       <th>Total pages</th>
+      <th>revision_number</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,6 +19,7 @@
         <td><%= book.tittle %></td>
         <td><%= book.author %></td>
         <td><%= book.total_pages %></td>
+        <td><%= book.revision_number %></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>

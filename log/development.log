@@ -154,3 +154,307 @@ Processing by AnimalsController#index as HTML
   [1m[35mAnimal Load (0.2ms)[0m  SELECT "animals".* FROM "animals"
   Rendered animals/index.html.erb within layouts/application (2.5ms)
 Completed 200 OK in 199ms (Views: 189.6ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "books" ("tittle", "author", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["tittle", "Aprendendo Ruby"], ["author", "Max"], ["created_at", "2016-07-03 14:40:26.210493"], ["updated_at", "2016-07-03 14:40:26.210493"]]
+  [1m[36m (58.4ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "books" ("tittle", "author", "total_pages", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["tittle", "Aprendendo Rails"], ["author", "Akira Toriyama"], ["total_pages", 3000], ["created_at", "2016-07-03 14:40:31.502748"], ["updated_at", "2016-07-03 14:40:31.502748"]]
+  [1m[35m (85.3ms)[0m  commit transaction
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  [1m[35mBook Load (0.3ms)[0m  SELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1  [["id", 2]]
+  [1m[36mBook Load (0.2ms)[0m  [1mSELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "books" SET "author" = ?, "updated_at" = ? WHERE "books"."id" = ?[0m  [["author", "MaxPain"], ["updated_at", "2016-07-03 14:46:56.275441"], ["id", 2]]
+  [1m[35m (58.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "books" WHERE "books"."id" = ?  [["id", 3]]
+  [1m[36m (36.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mBook Load (0.3ms)[0m  SELECT "books".* FROM "books"
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddRevisionNumberToBooks (20160703145540)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "books" ADD "revision_number" varchar[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20160703145540"]]
+  [1m[36m (38.2ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/books" for 127.0.0.1 at 2016-07-03 11:59:38 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.2ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 265ms (Views: 255.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/books/new" for 127.0.0.1 at 2016-07-03 12:04:00 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BooksController#new as HTML
+  Rendered books/_form.html.erb (15.9ms)
+  Rendered books/new.html.erb within layouts/application (19.9ms)
+Completed 200 OK in 283ms (Views: 268.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2016-07-03 12:05:42 -0300
+Processing by BooksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"swabacBNYxTPinxYUvO9LGbTkwnYUyPzcBIUi15SB0h+uEyM1htu7UFBozlKAIg8aX2vT7QP5kGC6WjgTQ+f6w==", "book"=>{"tittle"=>"hahah", "author"=>"qualquer um", "total_pages"=>"113", "revision_number"=>"7"}, "commit"=>"Create Book"}
+Unpermitted parameter: revision_number
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "books" ("tittle", "author", "total_pages", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["tittle", "hahah"], ["author", "qualquer um"], ["total_pages", 113], ["created_at", "2016-07-03 15:05:42.800139"], ["updated_at", "2016-07-03 15:05:42.800139"]]
+  [1m[35m (113.6ms)[0m  commit transaction
+Redirected to http://localhost:3000/books/4
+Completed 302 Found in 122ms (ActiveRecord: 114.1ms)
+
+
+Started GET "/books/4" for 127.0.0.1 at 2016-07-03 12:05:42 -0300
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mBook Load (0.2ms)[0m  [1mSELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1[0m  [["id", 4]]
+  Rendered books/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 22ms (Views: 15.1ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/books" for 127.0.0.1 at 2016-07-03 12:07:03 -0300
+Processing by BooksController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"swabacBNYxTPinxYUvO9LGbTkwnYUyPzcBIUi15SB0h+uEyM1htu7UFBozlKAIg8aX2vT7QP5kGC6WjgTQ+f6w==", "book"=>{"tittle"=>"hahah", "author"=>"qualquer um", "total_pages"=>"113", "revision_number"=>"7"}, "commit"=>"Create Book"}
+Unpermitted parameter: revision_number
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "books" ("tittle", "author", "total_pages", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["tittle", "hahah"], ["author", "qualquer um"], ["total_pages", 113], ["created_at", "2016-07-03 15:07:03.767578"], ["updated_at", "2016-07-03 15:07:03.767578"]]
+  [1m[35m (123.2ms)[0m  commit transaction
+Redirected to http://localhost:3000/books/5
+Completed 302 Found in 128ms (ActiveRecord: 123.6ms)
+
+
+Started GET "/books/5" for 127.0.0.1 at 2016-07-03 12:07:03 -0300
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBook Load (0.1ms)[0m  [1mSELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1[0m  [["id", 5]]
+  Rendered books/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 38ms (Views: 36.9ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2016-07-03 12:08:07 -0300
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.2ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 19ms (Views: 18.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+Processing by BooksController#index as HTML
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  Rendered books/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 23ms (Views: 21.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/animals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/assets/scaffolds.self-97f808c1331a01374538b02ea111b9b650bf4bec43aa54609cc131dbb748d399.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/assets/animals.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:11 -0300
+
+
+Started GET "/books" for 127.0.0.1 at 2016-07-03 12:08:15 -0300
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.3ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 21ms (Views: 20.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/animals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:15 -0300
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:15 -0300
+
+
+Started GET "/assets/scaffolds.self-97f808c1331a01374538b02ea111b9b650bf4bec43aa54609cc131dbb748d399.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:15 -0300
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:15 -0300
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:15 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:15 -0300
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:15 -0300
+
+
+Started GET "/assets/animals.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:16 -0300
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:16 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:16 -0300
+
+
+Started GET "/books" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+Processing by BooksController#index as HTML
+  [1m[36mBook Load (0.3ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  Rendered books/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 21ms (Views: 19.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/animals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/assets/scaffolds.self-97f808c1331a01374538b02ea111b9b650bf4bec43aa54609cc131dbb748d399.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/assets/animals.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:41 -0300
+
+
+Started GET "/books" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.3ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 19ms (Views: 17.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/animals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/assets/scaffolds.self-97f808c1331a01374538b02ea111b9b650bf4bec43aa54609cc131dbb748d399.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/assets/animals.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2016-07-03 12:08:53 -0300
+
+
+Started GET "/books" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+Processing by BooksController#index as HTML
+  [1m[36mBook Load (0.4ms)[0m  [1mSELECT "books".* FROM "books"[0m
+  Rendered books/index.html.erb within layouts/application (8.4ms)
+Completed 200 OK in 28ms (Views: 25.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/assets/animals.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/assets/scaffolds.self-97f808c1331a01374538b02ea111b9b650bf4bec43aa54609cc131dbb748d399.css?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/assets/books.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/assets/animals.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/assets/books.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2016-07-03 12:09:07 -0300
+
+
+Started GET "/books/5/edit" for 127.0.0.1 at 2016-07-03 12:09:09 -0300
+Processing by BooksController#edit as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mBook Load (0.2ms)[0m  SELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1  [["id", 5]]
+  Rendered books/_form.html.erb (3.5ms)
+  Rendered books/edit.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 30ms (Views: 28.6ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/books/5" for 127.0.0.1 at 2016-07-03 12:09:12 -0300
+Processing by BooksController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YyeExxcYzIfJ0USbfrISwY/nmLhOES7isbLhP3x0dj+umVMiAU7Bfkcam/pmQSfRgEmk/iJN61BDSZ1UbynunA==", "book"=>{"tittle"=>"hahah", "author"=>"qualquer um", "total_pages"=>"113", "revision_number"=>"4"}, "commit"=>"Update Book", "id"=>"5"}
+  [1m[36mBook Load (0.1ms)[0m  [1mSELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1[0m  [["id", 5]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "books" SET "revision_number" = ?, "updated_at" = ? WHERE "books"."id" = ?[0m  [["revision_number", "4"], ["updated_at", "2016-07-03 15:09:12.362351"], ["id", 5]]
+  [1m[35m (98.9ms)[0m  commit transaction
+Redirected to http://localhost:3000/books/5
+Completed 302 Found in 106ms (ActiveRecord: 99.4ms)
+
+
+Started GET "/books/5" for 127.0.0.1 at 2016-07-03 12:09:12 -0300
+Processing by BooksController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mBook Load (0.1ms)[0m  [1mSELECT  "books".* FROM "books" WHERE "books"."id" = ? LIMIT 1[0m  [["id", 5]]
+  Rendered books/show.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2016-07-03 12:09:14 -0300
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.3ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 26ms (Views: 24.9ms | ActiveRecord: 0.3ms)
