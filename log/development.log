@@ -458,3 +458,37 @@ Processing by BooksController#index as HTML
   [1m[35mBook Load (0.3ms)[0m  SELECT "books".* FROM "books"
   Rendered books/index.html.erb within layouts/application (3.0ms)
 Completed 200 OK in 26ms (Views: 24.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/books" for 127.0.0.1 at 2016-07-03 12:21:35 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by BooksController#index as HTML
+  [1m[35mBook Load (0.2ms)[0m  SELECT "books".* FROM "books"
+  Rendered books/index.html.erb within layouts/application (41.7ms)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.5ms)
+
+ActionView::Template::Error (undefined method `publish_company' for #<Book:0x0055992f86a0d8>
+Did you mean?  public_send):
+    20:         <td><%= book.author %></td>
+    21:         <td><%= book.total_pages %></td>
+    22:         <td><%= book.revision_number %></td>
+    23:         <td><%= book.publish_company %></td>
+    24:         <td><%= link_to 'Show', book %></td>
+    25:         <td><%= link_to 'Edit', edit_book_path(book) %></td>
+    26:         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  app/views/books/index.html.erb:23:in `block in _app_views_books_index_html_erb__4317629843328922605_47058208354980'
+  app/views/books/index.html.erb:17:in `_app_views_books_index_html_erb__4317629843328922605_47058208354980'
+
+
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (11.1ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.4ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (36.2ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (27.1ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /home/aluno125/.rbenv/versions/2.3.1/lib/ruby/gems/2.3.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (59.5ms)
