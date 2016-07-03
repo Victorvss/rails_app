@@ -146,3 +146,11 @@ Processing by AnimalsController#new as HTML
   Rendered animals/_form.html.erb (53.8ms)
   Rendered animals/new.html.erb within layouts/application (58.2ms)
 Completed 200 OK in 102ms (Views: 95.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/animals" for 127.0.0.1 at 2016-07-03 09:55:17 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by AnimalsController#index as HTML
+  [1m[35mAnimal Load (0.2ms)[0m  SELECT "animals".* FROM "animals"
+  Rendered animals/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 199ms (Views: 189.6ms | ActiveRecord: 0.3ms)
